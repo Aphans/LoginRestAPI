@@ -1,5 +1,5 @@
 <template>
-<div class="flex items-center justify-center h-screen w-full max-w-xs ml-80 mt-50">
+<div v-if="!showRegister" class="flex items-center justify-center h-screen w-full max-w-xs ml-80 mt-50">
   <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -17,20 +17,25 @@
     <div class="flex items-center justify-between">
       <button @click="enviarDatos()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
         Sign In
-      </button>
+      </button><button @click="showRegister=true">Sign Up</button>
       <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
         Forgot Password?
       </a>
     </div>
   </form>
   </div>
+  <div v-if="showRegister">
+  <FormRegister/>
+</div>
 </template>
 <script setup>
 import {ref} from "vue";
+import FormRegister from "./FormRegister.vue";
 const nombre = ref("");
 const contraseña = ref("");
 const mostrarUsuario = ref(false);
 const emits = defineEmits(['enviarDatos']);
+const showRegister = ref(false);
 const enviarDatos = ()=>{
   emits("enviarDatos", {usuario: nombre.value, contraseña:contraseña.value})
     nombre.value = "";
