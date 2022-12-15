@@ -7,10 +7,11 @@
   import FormRegister from "./FormRegister.vue";
   const registrarUsuario = async(datos) => {
     try {
-      const response = await axios.get(`http://localhost:3000/usuarios/`);
-      response.data.push(datos);
+      const response = await axios.post(`http://localhost:3000/usuarios/`,{
+        usuario:datos.usuario,
+      });
     } catch(error) {
-      console.log("No hemos encontrado al usuario");
+      console.log("No hemos podido registrar al usuario");
     }
   }
   </script>
