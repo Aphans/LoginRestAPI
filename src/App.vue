@@ -15,3 +15,5 @@ import Login from "./components/Login.vue";
 const showRegister=ref(false);
 const showLogin=ref(false);
 </script>
+<style setup>
+</style>
