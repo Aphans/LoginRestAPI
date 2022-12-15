@@ -23,7 +23,7 @@
 </label>
 <br>
         <div class="flex items-center justify-between">
-          <button @click="enviarDatos()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          <button @click="enviarRegistro()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
             Register
             </button>
         </div>
@@ -36,11 +36,10 @@
     const contraseña = ref("");
     const mostrarUsuario = ref(false);
     const niveles = ref([1,2]);
-    const emits = defineEmits(['enviarDatos']);
-    const enviarDatos = ()=>{
-      emits("enviarDatos", {usuario: nombre.value, contraseña:contraseña.value, nivel:niveles.value})
+    const emits = defineEmits(['enviarRegistro']);
+    const enviarRegistro = ()=>{
+      emits("enviarRegistro", {usuario: nombre.value, contraseña:contraseña.value,nivel:niveles.value})
         nombre.value = "";
         contraseña.value = "";
-        niveles.value=[];
     }
     </script>
