@@ -1,19 +1,22 @@
 <template>
-  <button @click="showRegister=true,showLogin=false">Registro</button>
-  <button @click="showLogin=true,showRegister=false">Login</button>
-  <div v-if="showRegister">
-    <Registro/>
-  </div>
-  <div v-if="showLogin">
+  <FormLogin @enviarView="viewRecibida"/>
+  <div v-if="view">
     <Login/>
+  </div>
+  <div v-else>
+    <FormRegister/>
   </div>
 </template>
 <script setup>
 import {ref} from "vue";
-import Registro from "@/components/Registro.vue";
-import Login from "./components/Login.vue";
-const showRegister=ref(false);
-const showLogin=ref(false);
+import FormLogin from "@/components/FormLogin.vue";
+import FormRegister from "@/components/FormRegister.vue";
+import Login from "@/components/Login.vue";
+const view = ref(false);
+const viewRecibida = (data) =>{
+  console.log(data);
+  view.value=data;
+}
 </script>
 <style setup>
 </style>

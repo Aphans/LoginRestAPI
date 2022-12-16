@@ -2,7 +2,7 @@
     <div class="mt-40 grid grid-cols-5 gap-4 content-end">
       <div></div>
       <div></div>
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
+      <form @ref="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
             Username
@@ -25,14 +25,11 @@
 </label>
 <br>
         <div class="flex items-center justify-between">
-          <button id="btnRegistro" @click="enviarRegistro(),showRegistro=true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          <button type="submit" @click="enviarRegistro()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
             Register
             </button>
         </div>
       </form>
-      </div>
-      <div v-if="showRegistro">
-        <Registro/>
       </div>
     </template>
     <script setup>
@@ -48,6 +45,9 @@
       emits("enviarRegistro", {usuario: nombre.value, contraseña:contraseña.value,nivel:niveles.value})
         nombre.value = "";
         contraseña.value = "";
+    }
+   const submit = ()=>{
+      this.$refs.form.$el.submit()
     }
     </script>
     <style scoped>
